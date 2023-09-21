@@ -1,0 +1,39 @@
+{% extends 'base.html' %}
+
+{% block title%}
+Details
+{% endblock%}
+
+{% block content%}
+<style>
+    body
+  {
+    background-image:url("{{url_for('static',filename='/images/img.png') }}");
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-size: 100% 100%;
+  }
+ </style>
+<body>
+    <h3>YOUR DETAILS:</h3>
+    <table class="table">
+  <thead>
+    <tr>
+      <th scope="col">id</th>
+      <th scope="col">First_Name</th>
+      <th scope="col">Last_Name</th>
+      <th scope="col">Email</th>
+    </tr>
+  </thead>
+
+  <tbody>
+        <tr>
+            <td scope="col">{{current_user.id}}</td>
+            <td scope="col">{{current_user.First_Name}}</td>
+            <td scope="col">{{current_user.Last_Name}}</td>
+            <td scope="col">{{current_user.Email}}</td>
+        </tr>
+  </tbody>
+</table>
+</body>
+{%endblock%}

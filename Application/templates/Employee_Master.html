@@ -1,0 +1,105 @@
+{% extends 'base.html' %}
+
+{% block title%}
+Master
+{% endblock%}
+
+{% block content%}
+<style>
+    body
+  {
+    background-image:url("{{url_for('static',filename='/images/img.png') }}");
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-size: 100% 100%;
+  }
+  .table_entry
+{
+    background-color:rgba(0,0,0,.001);
+    color:black;
+    padding:5px;
+    border:5px grey round;
+
+}
+    label
+    {
+        font-weight: bold;
+        color:black;
+    }
+
+    .trans
+    {
+        background-color:rgba(0,0,0,.05);
+        padding:5px;
+
+    }
+ </style>
+<body>
+
+    <form method="POST" class="form-register">
+     <h3>SEARCH BOX:</h3>
+    {{ form.hidden_tag()}}
+    <div class="table_entry">
+    <label>First_Name:</label>
+    {{form.First_Name(class="form-control",placeholder="First_Name")}}</div>
+    <div class="table_entry">
+    <label>Address:</label>
+    {{form.Address(class="form-control",placeholder="Address")}}</div>
+    <br>
+    {{form.submit(class="btn  btn-block btn-primary")}}
+    </form>
+    <br>
+    {%if response=={} %}
+        <h3>ALL THE  DETAILS:</h3>
+        <table class="table">
+      <thead>
+        <tr>
+          <th scope="col">id</th>
+          <th scope="col">First_Name</th>
+          <th scope="col">Last_Name</th>
+          <th scope="col">Email</th>
+        </tr>
+      </thead>
+
+      <tbody>
+        {% for employee in employees %}
+            {% if employee.Role !="Admin"%}
+            <tr>
+                <td scope="col">{{employee.id}}</td>
+                <td scope="col">{{employee.First_Name}}</td>
+                <td scope="col">{{employee.Last_Name}}</td>
+                <td scope="col">{{employee.Email}}</td>
+            </tr>
+            {%endif%}
+        {% endfor %}
+      </tbody>
+    </table>
+    {%else%}
+        <h3>  THE SELECTED EMPLOYEE DETAILS:</h3>
+            <table class="table">
+          <thead>
+            <tr>
+              <th scope="col">id</th>
+              <th scope="col">First_Name</th>
+              <th scope="col">Last_Name</th>
+              <th scope="col">Email</th>
+            </tr>
+          </thead>
+
+          <tbody>
+            {% for employee in response.values()%}
+                {% if employee.Role !="Admin"%}
+                <tr>
+                    <td scope="col">{{employee.id}}</td>
+                    <td scope="col">{{employee.First_Name}}</td>
+                    <td scope="col">{{employee.Last_Name}}</td>
+                    <td scope="col">{{employee.Email}}</td>
+                </tr>
+                {%endif%}
+            {% endfor %}
+          </tbody>
+        </table>
+    {%endif%}
+</body>
+</body>
+{%endblock%}

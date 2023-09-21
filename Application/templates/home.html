@@ -1,0 +1,40 @@
+{% extends 'base.html'%}
+{% block title%}
+Home
+{% endblock%}
+
+{%block content %}
+<style>
+  .box
+  {
+    margin: 0;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
+  body
+  {
+    background-image:url("{{url_for('static',filename='/images/img.png') }}");
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-size: 100% 100%;
+  }
+</style>
+
+<div class="box">
+  <h4>
+    This is an application for managing employees in an organization.
+  </h4>
+  {% if current_user.is_authenticated %}
+    <button class=" btn btn-primary"><a href="{{url_for('Employee_details')}}">Let's get started</a></button>
+  {%else%}
+    <button class=" btn btn-primary"><a href="{{url_for('login')}}">Let's get started</a></button>
+  {%endif%}
+
+</div>
+
+
+
+
+{% endblock%}

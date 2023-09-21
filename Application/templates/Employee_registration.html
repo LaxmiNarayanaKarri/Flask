@@ -1,0 +1,76 @@
+{% extends 'base.html' %}
+
+{% block title%}
+Registration
+{% endblock%}
+
+{% block content%}
+<style>
+    body
+  {
+    background-image:url("{{url_for('static',filename='/images/img.png') }}");
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-size: 100% 100%;
+  }
+    .table_entry
+    {
+        background-color:rgba(0,0,0,.001);
+        color:black;
+        padding:5px;
+        border:5px grey round;
+
+    }
+    label
+    {
+        font-weight: bold;
+        color:black;
+    }
+
+    .trans
+    {
+        background-color:rgba(0,0,0,.05);
+        padding:5px;
+
+    }
+</style>
+<body>
+    <div class="container trans">
+        <div class="Inside_container">
+            <h3>REGISTRATION FORM FOR EMPLOYEE:</h3>
+            <form method="POST" class="form-register">
+                {{ form.hidden_tag()}}
+                <div class="table_entry">
+                <label>First Name:</label>
+                {{form.First_Name(class="form-control input",placeholder="First Name")}}
+                </div>
+                <div class="table_entry">
+                <label>Last Name:</label>
+                {{form.Last_Name(class="form-control",placeholder="Last Name")}}</div>
+                <div class="table_entry">
+                <label>Email:</label>
+                {{form.Email(class="form-control",placeholder="Email")}}</div>
+                <div class="table_entry">
+                <label>Phone Number:</label>
+                {{form.Phone_Number(class="form-control",placeholder="Phone Number")}}</div>
+                <div class="table_entry">
+                <label>Date of Birth:</label>
+                {{form.DOB(class="form-control",placeholder="Date of Birth")}}</div>
+                <div class="table_entry">
+                <label>Address:</label>
+                {{form.Address(class="form-control",placeholder="Address")}}</div>
+                <div class="table_entry">
+                <label>Password:</label>
+                {{form.Password(class="form-control",placeholder="Password")}}</div>
+                <div class="table_entry">
+                <label>Comfirm Password:</label>
+                {{form.Password2(class="form-control",placeholder="Comfirm Password")}}</div>
+                <br>
+                {{form.submit(class="btn  btn-block btn-primary")}}
+            </form>
+
+        </div>
+    </div>
+</body>
+
+{% endblock%}
